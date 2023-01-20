@@ -8,6 +8,14 @@ import { TfiPlus } from "react-icons/tfi";
 
 function School() {
 
+        //DeleteTodo List
+        const DeleteTodo = (id) => {
+            const filterTask = TaskContent.filter((e,i) => {
+                return e.id !== id
+            })
+            SetTaskcontent(filterTask);
+        }
+
     //Todo Task value getting
     const SaveData = () => {
         const data = localStorage.getItem('TaskContent');
@@ -92,7 +100,7 @@ function School() {
 
           {TaskContent.length > 0 && 
             <>
-                <TaskView TaskContent={TaskContent}/>
+                <TaskView TaskContent={TaskContent} DeleteTodo = {DeleteTodo} />
             </>
           }
 

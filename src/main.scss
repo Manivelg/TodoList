@@ -292,7 +292,6 @@ bottom: 2px;
 }
 .status_act {
     background: #424242;
-    margin: 0px 0px 0px 5px;
     padding: 4px;
     border-radius: 5px;
     font-size: 20px;
@@ -303,6 +302,9 @@ bottom: 2px;
     opacity: 1;
     transition: 1s;
     }
+}
+.mr_right {
+margin-right: 10px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -319,5 +321,17 @@ margin: 0px auto;
 position: fixed;
 bottom: 20px;
 width: 100%;
+}
+.enter_lists {
+width: 88%;
+}
+.list_data {
+width: 90%;
+}
+.mr_right {
+margin-right: 5px;
+}
+.status_act {
+font-size: 15px;
 }
 }

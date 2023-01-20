@@ -3,7 +3,8 @@ import { GiCheckboxTree } from "react-icons/gi";
 import { TfiCalendar } from "react-icons/tfi";
 import { BsTrash, BsPencil } from 'react-icons/bs';
 
-function TaskView({TaskContent}) {
+function TaskView({TaskContent,DeleteTodo}) {
+
   return (
     <>
 
@@ -31,8 +32,8 @@ function TaskView({TaskContent}) {
                         
                     </div>
                         <div className='task_status'>
-                            <BsPencil className='status_act'/>
-                            <BsTrash className='status_act'/>
+                            <BsPencil className='status_act mr_right'/>
+                            <BsTrash className='status_act' onClick={(e) => {DeleteTodo(TaskContent.id)}}/>
                         </div>
                 </div>
 

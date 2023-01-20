@@ -101,9 +101,9 @@ function Dashboard() {
 
             </div>
 
-          <div className='task_show'>
+          {/* <div className='task_show'>
             <Task TaskView = {TaskView}/>
-          </div>
+          </div> */}
 
         </div>
 
