@@ -1,17 +1,28 @@
-import React from 'react';
+import React , {useState} from 'react';
+import {Link} from 'react-router-dom';
 import { FiMenu } from "react-icons/fi";
 import { BsGrid1X2Fill, BsFillFolderFill } from "react-icons/bs";
 import { TfiPlus, TfiSearch, TfiBell } from "react-icons/tfi";
+import Sidemenu from '../bar/sidemenu';
+import Menunav from './json/menunav.json';
+
+function Header(props) {;
+
+    const {hideSideMenu}= props;
+    const [ShowMenu, SetShowMenu] = useState(false);
+    const [searchvalue, Setsearchvalue] = useState();
+    const [headNavstatus, SetHeadNavstatus] = useState(2);
 
 
-
-function header() {
-
-    // const [ShowMenu, SetShowMenu] = useState(false);
-
-    const ShowMenu=() => {
-    alert('hai');
+    const Searchdata = (e) => {
+        if(e.target.value !== '') {
+            Setsearchvalue(e.target.value);
+        }
     }
+
+    // const ShowMenu=() => {
+    // alert('hai');
+    // }
 
   return (
 
@@ -20,39 +31,59 @@ function header() {
         <div className='dashboard_menu'>
 
             <div className='hidden'>
-                <div className='menu_bar' onClick={ShowMenu}>
+                <div className='menu_bar' onClick={() => {SetShowMenu(!ShowMenu)}}>
                   <FiMenu />
                 </div>
             </div>
 
             <div className='left_one'>
                 <div className='short_one'>
-                    <div className='menu_bar'>
+                    <div className='menu_bars'>
                         <FiMenu />
                     </div>
                 </div>
 
-                <div className='short_two'>
-                <BsGrid1X2Fill />
-                <span className='head_para'>Dashboard</span>
+                
+                {/* <div className='short_two'>
+                    <BsGrid1X2Fill />
+                    <span className='head_para'>Dashboard</span>
                 </div>
 
                 <div className='short_two'>
                     <BsFillFolderFill />
                     <span className='head_para'>Collections</span>
-                </div>
+                </div> */}
+
+                {
+                    Menunav.map( (response,index)=> (
+
+                        <Link to={response.link} className={ headNavstatus == response.id ? 'short_two short_two--active' : 'short_two'}  key= {response.id} onClick={() => SetHeadNavstatus(response.id)}
+                        >
+                            <img src={response.image} alt="MenuIcon" className='menunav_icon' />
+                            <span className='head_para'>{response.header}</span>
+                        </Link>
+                    ))
+                }
+
             </div>
 
             <div className='left_one'>
-            <div className='short_one'>
+            {/* <div className='short_one'>
                     <div className='add_button'>
                         <TfiPlus />
                     </div>
-                </div>
+                </div> */}
 
                 <div className='short_four'>
                     <span className='search'>
-                         <TfiSearch/>
+                         <TfiSearch className='search_icon'/>
+                         <input 
+                                type='search' 
+                                placeholder='Task Name' 
+                                className='search_task'
+                                value={searchvalue}
+                                onChange={Searchdata}
+                                />
                     </span>
                 </div>
 
@@ -82,9 +113,17 @@ function header() {
                 </div>
             </div>
     </section>
+    <div className={`${ShowMenu ? "not_show" : "show"}`}>
+        
+        {
+            !hideSideMenu && 
+        <Sidemenu />
+        }
+    </div>
+    
     </>
     
   )
 }
 
-export default header
+export default Header
